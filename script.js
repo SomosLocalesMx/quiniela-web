@@ -1,29 +1,19 @@
-var admin = require("firebase-admin");
+// Configuración de Firebase (lo que Firebase te da)
+var firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_PROJECT_ID.firebaseapp.com",
+  projectId: "TU_PROJECT_ID",
+  storageBucket: "TU_PROJECT_ID.appspot.com",
+  messagingSenderId: "TU_SENDER_ID",
+  appId: "TU_APP_ID"
+};
 
-var serviceAccount = require("path/to/serviceAccountKey.json");
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-// Función para guardar la quiniela
-function guardarQuiniela(usuario, quiniela) {
-  // Conexión a Firebase
-  const db = firebase.firestore();
-  
-  // Guardar la quiniela en una colección llamada 'quinielas'
-  db.collection("quinielas").add({
-    usuario: usuario,
-    quiniela: quiniela,
-    fecha: new Date() // Guardamos la fecha en que se hizo la quiniela
-  })
-  .then(() => {
-    alert("¡Tu quiniela ha sido guardada!");
-  })
-  .catch((error) => {
-    console.error("Error al guardar la quiniela: ", error);
-  });
-}
-// Función para registrarse
+// Aquí van las otras funciones que escribimos, como guardar quiniela, login, etc.
+
+// Función para registrar usuario
 function registrarse() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -39,6 +29,7 @@ function registrarse() {
       alert("Error: " + errorMessage);
     });
 }
+
 // Función para iniciar sesión
 function iniciarSesion() {
   const email = document.getElementById('email').value;
@@ -55,6 +46,8 @@ function iniciarSesion() {
       alert("Error: " + errorMessage);
     });
 }
+
+// Función para guardar la quiniela (por ejemplo)
 function guardarQuiniela(usuario, quiniela) {
   const db = firebase.firestore();
   const user = firebase.auth().currentUser; // Obtener el usuario actual
