@@ -1,3 +1,60 @@
+var admin = require("firebase-admin");
+
+var serviceAccount = require("path/to/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+// Función para guardar la quiniela
+function guardarQuiniela(usuario, quiniela) {
+  // Conexión a Firebase
+  const db = firebase.firestore();
+  
+  // Guardar la quiniela en una colección llamada 'quinielas'
+  db.collection("quinielas").add({
+    usuario: usuario,
+    quiniela: quiniela,
+    fecha: new Date() // Guardamos la fecha en que se hizo la quiniela
+  })
+  .then(() => {
+    alert("¡Tu quiniela ha sido guardada!");
+  })
+  .catch((error) => {
+    console.error("Error al guardar la quiniela: ", error);
+  });
+}
+// Función para registrarse
+function registrarse() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert("¡Te has registrado correctamente!");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert("Error: " + errorMessage);
+    });
+}
+// Función para iniciar sesión
+function iniciarSesion() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert("¡Has iniciado sesión!");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert("Error: " + errorMessage);
+    });
+}
 // Datos de partidos de ejemplo
 const games = [
   { id: 1, teamA: "Pumas", teamB: "Santos" },
