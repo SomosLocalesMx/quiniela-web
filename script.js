@@ -55,6 +55,22 @@ function iniciarSesion() {
       alert("Error: " + errorMessage);
     });
 }
+function guardarQuiniela(usuario, quiniela) {
+  const db = firebase.firestore();
+  const user = firebase.auth().currentUser; // Obtener el usuario actual
+
+  db.collection("quinielas").add({
+    usuarioId: user.uid, // Guardamos el ID del usuario
+    quiniela: quiniela,
+    fecha: new Date()
+  })
+  .then(() => {
+    alert("¡Tu quiniela ha sido guardada!");
+  })
+  .catch((error) => {
+    console.error("Error al guardar la quiniela: ", error);
+  });
+}
 // Datos de partidos de ejemplo
 const games = [
   { id: 1, teamA: "Pumas", teamB: "Santos" },
