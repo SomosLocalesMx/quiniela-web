@@ -1,8 +1,14 @@
 // Datos de partidos de ejemplo
 const games = [
-  { id: 1, teamA: "Tigres Femenil", teamB: "Chivas Femenil" },
-  { id: 2, teamA: "América Femenil", teamB: "Pumas Femenil" },
-  { id: 3, teamA: "Monterrey Femenil", teamB: "Atlas Femenil" },
+  { id: 1, teamA: "Pumas", teamB: "Santos" },
+  { id: 2, teamA: "Pachuca", teamB: "Cruz Azul" },
+  { id: 3, teamA: "San Luis", teamB: "Monterrey" },
+  { id: 3, teamA: "Puebla", teamB: "León" },
+  { id: 3, teamA: "Querétaro", teamB: "Mazatlán" },
+  { id: 3, teamA: "Necaxa", teamB: "América" },
+  { id: 3, teamA: "Tigres", teamB: "Atlas" },
+  { id: 3, teamA: "Chivas", teamB: "Juárez" },
+  { id: 3, teamA: "Tijuana", teamB: "Toluca" },
 ];
 
 // Referencias al DOM
